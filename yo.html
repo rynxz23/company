@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="GreenRide Tech - E-Bike Ramah Lingkungan dengan teknologi terkini untuk mobilitas masa kini." />
+<title>GreenRide Tech - E-Bike Ramah Lingkungan</title>
+<style>
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4A5568;
+    background: #fff;
+    line-height: 1.6;
+  }
+  a {
+    color: #2F855A;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header & Navigation */
+  header {
+    background: #2F855A;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav ul li {
+    font-weight: 600;
+  }
+  nav ul li a {
+    color: white;
+    font-weight: 600;
+  }
+  nav ul li a:hover {
+    color: #68D391;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+    position: relative;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(47, 133, 90, 0.75);
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+  .hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .btn-primary {
+    background: #68D391;
+    color: #2F855A;
+    padding: 0.75rem 1.8rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .btn-primary:hover {
+    background: #2F855A;
+    color: white;
+  }
+
+  /* Highlight points */
+  .highlights {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0 5rem;
+    flex-wrap: wrap;
+  }
+  .highlight-item {
+    background: #E6FFFA;
+    border: 2px solid #68D391;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    width: 280px;
+    text-align: center;
+    font-weight: 600;
+    color: #2F855A;
+    box-shadow: 0 4px 8px rgb(104 211 145 / 0.2);
+  }
+
+  /* Sections common */
+  section {
+    padding: 3rem 0;
+  }
+  section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2F855A;
+    font-size: 2rem;
+  }
+  .section-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* About Us */
+  .about-text p {
+    margin-bottom: 1rem;
+  }
+  .team {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .team-member {
+    text-align: center;
+    max-width: 180px;
+  }
+  .team-member img {
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+    border: 4px solid #68D391;
+  }
+  .team-member h4 {
+    margin-bottom: 0.25rem;
+    color: #2F855A;
+  }
+  .team-member p {
+    font-size: 0.9rem;
+    color: #4A5568;
+  }
+
+  /* Services */
+  .services-list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .service-item {
+    border: 2px solid #68D391;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 280px;
+    background: #F0FFF4;
+    box-shadow: 0 4px 8px rgb(104 211 145 / 0.15);
+  }
+  .service-item h3 {
+    color: #2F855A;
+    margin-bottom: 1rem;
+  }
+  .service-item p {
+    font-size: 0.95rem;
+    color: #4A5568;
+  }
+
+  /* Portfolio */
+  .portfolio-list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .portfolio-item {
+    border: 1.5px solid #68D391;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 320px;
+    background: #E6FFFA;
+    box-shadow: 0 4px 6px rgb(104 211 145 / 0.2);
+  }
+  .portfolio-item h4 {
+    margin-bottom: 0.5rem;
+    color: #2F855A;
+  }
+  .portfolio-item p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #4A5568;
+  }
+  .portfolio-item .label {
+    font-weight: 700;
+    color: #2F855A;
+  }
+
+  /* Contact Us */
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  label {
+    font-weight: 600;
+    color: #2F855A;
+  }
+  input, textarea {
+    padding: 0.75rem;
+    border: 2px solid #68D391;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s;
+  }
+  input:focus, textarea:focus {
+    border-color: #2F855A;
+    outline: none;
+  }
+  button[type="submit"] {
+    background: #2F855A;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  button[type="submit"]:hover {
+    background: #68D391;
+    color: #2F855A;
+  }
+  .address {
+    margin-top: 2rem;
+    font-style: normal;
+    color: #4A5568;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+  .map {
+    margin-top: 1rem;
+    width: 100%;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgb(104 211 145 / 0.3);
+  }
+
+  /* Testimonials */
+  .testimonials-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .testimonial-item {
+    background: #F0FFF4;
+    border: 2px solid #68D391;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 280px;
+    font-style: italic;
+    color: #276749;
+    box-shadow: 0 4px 6px rgb(104 211 145 / 0.2);
+  }
+  .testimonial-item strong {
+    display: block;
+    margin-top: 1rem;
+    color: #2F855A;
+    font-style: normal;
+  }
+  .partners {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  .partners ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .partners ul li {
+    background: #68D391;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  /* Blog Preview */
+  .blog-preview {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #E6FFFA;
+    border: 2px solid #68D391;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 6px rgb(104 211 145 / 0.2);
+  }
+  .blog-preview h3 {
+    color: #2F855A;
+    margin-bottom: 0.5rem;
+  }
+  .blog-preview .date {
+    font-size: 0.85rem;
+    color: #4A5568;
+    margin-bottom: 1rem;
+  }
+  .blog-preview p {
+    font-size: 1rem;
+    color: #276749;
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    margin-bottom: 1.25rem;
+  }
+  .faq-item strong {
+    color: #2F855A;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .faq-item p {
+    color: #4A5568;
+  }
+
+  /* Footer */
+  footer {
+    background: #2F855A;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .highlights, .services-list, .portfolio-list, .testimonials-list, .team {
+      flex-direction: column;
+      align-items: center;
+    }
+    nav ul {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    header .container {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>GreenRide Tech</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang Kami</a></li>
+        <li><a href="#services">Layanan</a></li>
+        <li><a href="#portfolio">Portofolio</a></li>
+        <li><a href="#contact">Hubungi Kami</a></li>
+        <li><a href="#testimonials">Testimoni</a></li>
+        <li><a href="#blog">Berita</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero" role="banner" aria-label="Hero Section">
+  <div class="hero-content">
+    <h2>E-Bike Ramah Lingkungan untuk Mobilitas Masa Kini</h2>
+    <p>Nikmati perjalanan bebas polusi dengan teknologi terkini kami.</p>
+    <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Jelajahi Produk Kami</button>
+  </div>
+</section>
+
+<!-- Highlights -->
+<section aria-label="Keunggulan GreenRide Tech">
+  <div class="container highlights">
+    <div class="highlight-item" tabindex="0">Teknologi Baterai Tahan Lama</div>
+    <div class="highlight-item" tabindex="0">Desain Ergonomis dan Stylish</div>
+    <div class="highlight-item" tabindex="0">Dukungan Purna Jual Terbaik</div>
+  </div>
+</section>
+
+<!-- About Us -->
+<section id="about" aria-label="Tentang Kami">
+  <h2>Tentang Kami</h2>
+  <div class="container section-content about-text">
+    <p><strong>Visi:</strong> Menjadi pelopor solusi transportasi hijau di Asia Tenggara.</p>
+    <p><strong>Misi:</strong></p>
+    <ul>
+      <li>Menghadirkan e-bike berkualitas tinggi dan terjangkau</li>
+      <li>Meningkatkan kesadaran lingkungan melalui inovasi</li>
+    </ul>
+    <p><strong>Nilai Inti:</strong> Keberlanjutan, Inovasi, Kepuasan Pelanggan</p>
+  </div>
+  <div class="container team" aria-label="Tim Pendiri GreenRide Tech">
+    <div class="team-member" tabindex="0">
+      <img src="https://i.pravatar.cc/140?img=15" alt="Foto fiktif pendiri Andi" />
+      <h4>Andi Wijaya</h4>
+      <p>CEO & Founder</p>
+    </div>
+    <div class="team-member" tabindex="0">
+      <img src="https://i.pravatar.cc/140?img=22" alt="Foto fiktif pendiri Rina" />
+      <h4>Rina Sari</h4>
+      <p>CTO</p>
+    </div>
+    <div class="team-member" tabindex="0">
+      <img src="https://i.pravatar.cc/140?img=47" alt="Foto fiktif pendiri Budi" />
+      <h4>Budi Santoso</h4>
+      <p>COO</p>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" aria-label="Layanan dan Produk">
+  <h2>Layanan & Produk</h2>
+  <div class="container services-list">
+    <article class="service-item" tabindex="0">
+      <h3>GreenRide City</h3>
+      <p>E-bike untuk penggunaan harian di kota, dengan baterai tahan lama dan desain compact yang mudah dibawa.</p>
+      <p><strong>Manfaat:</strong> Mobilitas efisien dan ramah lingkungan untuk aktivitas sehari-hari.</p>
+    </article>
+    <article class="service-item" tabindex="0">
+      <h3>GreenRide Sport</h3>
+      <p>E-bike sporty untuk olahraga dan petualangan, dilengkapi suspensi ganda dan rangka kokoh.</p>
+      <p><strong>Manfaat:</strong> Mendukung gaya hidup aktif dan petualangan outdoor tanpa polusi.</p>
+    </article>
+    <article class="service-item" tabindex="0">
+      <h3>GreenRide Cargo</h3>
+      <p>E-bike untuk pengiriman dan logistik ringan dengan ruang kargo besar dan tenaga motor optimal.</p>
+      <p><strong>Manfaat:</strong> Solusi pengiriman ramah lingkungan yang hemat biaya dan efisien.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" aria-label="Portofolio Proyek">
+  <h2>Portofolio</h2>
+  <div class="container portfolio-list">
+    <article class="portfolio-item" tabindex="0">
+      <h4>Kerjasama dengan Komunitas Hijau Jakarta</h4>
+      <p><span class="label">Tantangan:</span> Kurangnya transportasi ramah lingkungan</p>
+      <p><span class="label">Solusi:</span> Penyediaan 100 unit GreenRide City</p>
+      <p><span class="label">Hasil:</span> Penurunan emisi CO2 lokal sebesar 10%</p>
+    </article>
+    <article class="portfolio-item" tabindex="0">
+      <h4>Kolaborasi dengan Event Olahraga</h4>
+      <p><span class="label">Tantangan:</span> Transportasi peserta yang efisien</p>
+      <p><span class="label">Solusi:</span> GreenRide Sport sebagai alat transportasi utama</p>
+      <p><span class="label">Hasil:</span> Kepuasan tinggi dari peserta</p>
+    </article>
+    <article class="portfolio-item" tabindex="0">
+      <h4>Pilot Project Pengiriman di Bandung</h4>
+      <p><span class="label">Tantangan:</span> Pengiriman ramah lingkungan di area padat</p>
+      <p><span class="label">Solusi:</span> GreenRide Cargo untuk logistik urban</p>
+      <p><span class="label">Hasil:</span> Pengiriman tepat waktu & biaya operasional turun</p>
+    </article>
+  </div>
+</section>
+
+<!-- Contact Us -->
+<section id="contact" aria-label="Hubungi Kami">
+  <h2>Hubungi Kami</h2>
+  <div class="container contact-container">
+    <form id="contactForm" novalidate>
+      <label for="name">Nama</label>
+      <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda" />
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="contoh@email.com" />
+      
+      <label for="subject">Subjek</label>
+      <input type="text" id="subject" name="subject" required placeholder="Subjek pesan" />
+      
+      <label for="message">Pesan</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Tulis pesan Anda di sini"></textarea>
+   

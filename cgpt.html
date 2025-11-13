@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FieldFlux — Connect teams. Deliver results.</title>
+  <meta name="description" content="FieldFlux — Aplikasi mobile B2B untuk manajemen tim lapangan: real-time tracking, offline-first, dan laporan otomatis."/>
+  <meta name="theme-color" content="#0f1724" />
+  <link rel="icon" href="data:,">
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FieldFlux",
+    "url": "https://fieldflux.example",
+    "logo": "https://fieldflux.example/assets/logo.png",
+    "sameAs": [
+      "https://linkedin.com/company/fieldflux"
+    ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+62-21-555-0100",
+      "contactType": "sales",
+      "areaServed": "ID",
+      "availableLanguage": "Indonesian"
+    }]
+  }
+  </script>
+
+  <style>
+    /* ===== Base / Theme ===== */
+    :root{
+      --bg: #0f1724; /* very dark navy */
+      --surface: #111827;
+      --text: #E6EEF3;
+      --muted: #9AA7B2;
+      --accent: #00BFA6; /* mint/cyan */
+      --accent-2:#7C5CFF; /* violet */
+      --card-radius: 12px;
+      --glass: rgba(255,255,255,0.03);
+      --max-width: 1100px;
+      --transition: 220ms ease;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #081021 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:64px;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+
+    .container{
+      width:90%;
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:36px 0;
+    }
+
+    /* ===== Header / Nav ===== */
+    header.site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(15,23,36,0.6), rgba(15,23,36,0.35));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+      width:90%;
+      max-width:var(--max-width);
+      margin:0 auto;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color: #021118;
+      box-shadow: 0 6px 20px rgba(124,92,255,0.08);
+    }
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav.primary{display:flex;gap:18px;align-items:center}
+    nav.primary a{font-size:15px;color:var(--text);padding:8px;border-radius:8px}
+    nav.primary a:hover{background:rgba(255,255,255,0.02)}
+    .cta{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#021118;padding:10px 16px;border-radius:10px;font-weight:600;
+      box-shadow:0 6px 20px rgba(0,191,166,0.08);
+    }
+
+    /* Mobile */
+    .hamburger{display:none;background:none;border:0;color:var(--text);font-size:20px;padding:8px}
+    @media (max-width:900px){
+      nav.primary{display:none}
+      .hamburger{display:block}
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding:48px 0;
+    }
+    .hero .headline h2{margin:0 0 12px 0;font-size:36px;line-height:1.05}
+    .hero .headline p{margin:0 0 18px;color:var(--muted)}
+    .hero .actions{display:flex;gap:12px;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;border:0;cursor:pointer;
+      transition:var(--transition);
+      font-weight:600;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021118}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+    .hero-ill{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;padding:18px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 6px 30px rgba(2,17,24,0.5);
+    }
+
+    /* USP */
+    .usp-grid{display:flex;gap:14px;margin-top:18px}
+    .usp{background:var(--surface);padding:14px;border-radius:12px;flex:1}
+    .usp h4{margin:0 0 6px 0}
+    .usp p{margin:0;color:var(--muted);font-size:13px}
+
+    /* ===== Section Cards & Grid ===== */
+    section{padding:28px 0}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--surface);padding:18px;border-radius:12px;box-shadow:0 6px 30px rgba(2,12,20,0.35)}
+    .muted{color:var(--muted);font-size:14px}
+
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr; text-align:left}
+      .card-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .container{width:94%}
+      .hero .headline h2{font-size:28px}
+      .card-grid{grid-template-columns:1fr}
+    }
+
+    /* ===== Testimonials & Partners strip ===== */
+    .partners{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .partner-logo{width:96px;height:40px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;border-radius:8px;color:var(--muted);font-weight:600}
+
+    .testimonial{display:flex;gap:12px;align-items:flex-start}
+    .avatar{width:54px;height:54px;border-radius:10px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700;color:#021118}
+
+    /* ===== Portfolio modal ===== */
+    .modal{
+      position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(1,6,10,0.6);z-index:120;
+    }
+    .modal.open{display:flex}
+    .modal .panel{width:min(920px,94%);background:linear-gradient(180deg,#08101a,#0f1724);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .modal .close{background:none;border:0;color:var(--text);font-size:20px}
+
+    /* ===== FAQ Accordion ===== */
+    .faq .q{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+    .faq .a{padding:12px 14px;color:var(--muted);display:none}
+    .faq .q.open + .a{display:block}
+
+    /* ===== Contact Form ===== */
+    form.contact{display:grid;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    input[type="text"],input[type="email"],textarea,input[type="date"]{
+      padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:640px){.form-row{grid-template-columns:1fr}}
+
+    .note{font-size:13px;color:var(--muted)}
+
+    /* ===== Footer ===== */
+    footer{margin-top:36px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .footer-grid{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    @media (max-width:800px){.footer-grid{display:block}}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* ===== Utility ===== */
+    .hidden{display:none}
+    .center{display:flex;align-items:center;justify-content:center}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-size:13px}
+    .kbd{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:6px;font-size:13px}
+    .mt{margin-top:12px}
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header" role="banner" aria-label="Site header">
+    <div class="nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">FF</div>
+        <div>
+          <h1 style="font-size:14px;margin-bottom:4px">FieldFlux</h1>
+          <p style="margin-top:0">Connect teams. Deliver results.</p>
+        </div>
+      </div>
+
+      <nav class="primary" role="navigation" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Layanan</a>
+        <a href="#portfolio">Portofolio</a>
+        <a href="#blog">Berita</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="cta btn btn-primary" id="requestDemoBtn">Request Demo</button>
+        <button class="hamburger" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle menu">&#9776;</button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileNav" style="display:none;padding:8px 10px;border-top:1px solid rgba(255,255,255,0.02);">
+      <nav style="display:flex;flex-direction:column;gap:8px">
+        <a href="#home">Home</a>
+        <a href="#services">Layanan</a>
+        <a href="#portfolio">Portofolio</a>
+        <a href="#blog">Berita</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page container -->
+  <main id="home" role="main">
+    <div class="container">
+      <!-- HERO -->
+      <section class="hero" aria-label="Hero section">
+        <div class="headline">
+          <p class="pill">Field Operations • Mobile • Offline-ready</p>
+          <h2>Manage field teams real time, without the chaos.</h2>
+          <p class="muted">FieldFlux menghubungkan manajer operasi dengan tim lapangan melalui aplikasi offline-first, pelaporan otomatis, dan integrasi API untuk alur kerja yang lebih efisien.</p>
+
+          <div class="actions mt">
+            <button class="btn btn-primary" id="heroDemo">Request Demo</button>
+            <a class="btn btn-ghost" href="#portfolio">See Portfolio</a>
+          </div>
+
+          <div class="usp-grid mt" aria-hidden="false">
+            <div class="usp">
+              <h4>Real-time tracking</h4>
+              <p>Pantau lokasi & status tugas tim secara langsung tanpa repot.</p>
+            </div>
+            <div class="usp">
+              <h4>Offline-first</h4>
+              <p>Aplikasi tetap bekerja di area minim sinyal, sinkron saat online.</p>
+            </div>
+            <div class="usp">
+              <h4>Auto reports</h4>
+              <p>Laporan otomatis untuk manajemen & kepatuhan dengan export CSV/PDF.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-ill" aria-hidden="true">
+          <!-- phone mockup -->
+          <div style="width:260px;border-radius:14px;background:linear-gradient(180deg,#021118,#062027);padding:14px">
+            <div style="border-radius:10px;background:linear-gradient(180deg,#051420,#0b2430);padding:10px;color:var(--text);font-weight:600">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-size:12px;color:var(--muted)">FieldFlux</div>
+                <div style="font-size:12px;color:var(--muted)">09:41</div>
+              </div>
+              <div style="margin-top:12px">
+                <div style="background:rgba(255,255,255,0.02);padding:10px;border-radius:8px">
+                  <div style="display:flex;justify-content:space-between">
+                    <div>
+                      <div style="font-size:12px;color:var(--muted)">Task</div>
+                      <div style="font-weight:700">Inspect Site A</div>
+                    </div>
+                    <div style="text-align:right">
+                      <div style="font-size:12px;color:var(--muted)">ETA</div>
+                      <div style="font-weight:700">08:30</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="height:8px"></div>
+                <div style="background:rgba(255,255,255,0.01);padding:10px;border-radius:8px">
+                  <div style="font-size:12px;color:var(--muted)">Team status</div>
+                  <div style="display:flex;gap:8px;margin-top:8px">
+                    <span class="kbd">On Site</span>
+                    <span class="kbd">In Transit</span>
+                    <span class="kbd">Pending</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partners / Social proof -->
+      <section aria-label="Partners & social proof">
+        <div class="section-head">
+          <h3 style="margin:0">Trusted by teams like</h3>
+          <div class="small muted">Rated 4.7 / 5 by simulated clients</div>
+        </div>
+        <div class="partners">
+          <div class="partner-logo">LogiTrans</div>
+          <div class="partner-logo">Maintena</div>
+          <div class="partner-logo">EnergiServ</div>
+          <div class="partner-logo">InfraCo</div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" aria-labelledby="servicesHeading">
+        <div class="section-head">
+          <h3 id="servicesHeading" style="margin:0">Layanan & Produk</h3>
+          <div class="muted small">Solusi modular untuk operasi lapangan</div>
+        </div>
+
+        <div class="card-grid" role="list">
+          <article class="card" role="listitem" aria-labelledby="s1">
+            <h4 id="s1">FieldFlux Core</h4>
+            <p class="muted">Aplikasi manajemen tugas lapangan (assign, route, track).</p>
+            <ul style="color:var(--muted);margin-top:10px;padding-left:18px">
+              <li>Task assignment & geofencing</li>
+              <li>Offline data sync</li>
+              <li>Real-time status & ETA</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn btn-primary" onclick="openContact('Inquiry about FieldFlux Core')">Request Demo</button></div>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="s2">
+            <h4 id="s2">Flux Reports</h4>
+            <p class="muted">Dashboard analitik & laporan otomatis untuk KPI & compliance.</p>
+            <ul style="color:var(--muted);margin-top:10px;padding-left:18px">
+              <li>Scheduled reports (CSV/PDF)</li>
+              <li>Custom dashboard widgets</li>
+              <li>Export & API</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn btn-ghost" onclick="openContact('Inquiry about Flux Reports')">Get Pricing</button></div>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="s3">
+            <h4 id="s3">Flux Connect (API)</h4>
+            <p class="muted">Integrasi mudah ke ERP/CRM via REST API & webhooks.</p>
+            <ul style="color:var(--muted);margin-top:10px;padding-left:18px">
+              <li>Webhook & REST endpoints</li>
+              <li>Role-based access</li>
+              <li>Sandbox environment</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn btn-primary" onclick="openContact('Inquiry about Flux Connect')">Request API Access</button></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Portfolio -->
+      <section id="portfolio" aria-labelledby="portfolioHeading">
+        <div class="section-head">
+          <h3 id="portfolioHeading" style="margin:0">Portofolio (Case Studies)</h3>
+          <div class="muted small">Beberapa hasil proyek fiktif kami</div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card" role="button" tabindex="0" onclick="openPortfolio(0)" onkeypress="if(event.key==='Enter')openPortfolio(0)">
+            <h4>MaintenanceX — Maintenance Operations</h4>
+            <p class="muted">Tantangan: koordinasi teknisi, laporan manual.</p>
+            <p class="mt"><strong>Hasil:</strong> +32% efisiensi, pengurangan waktu respon.</p>
+            <div style="margin-top:12px"><span class="pill">Case Study</span></div>
+          </div>
+
+          <div class="card" role="button" tabindex="0" onclick="openPortfolio(1)" onkeypress="if(event.key==='Enter')openPortfolio(1)">
+            <h4>LogiX — Delivery Optimization</h4>
+            <p class="muted">Tantangan: routing & delays.</p>
+            <p class="mt"><strong>Hasil:</strong> -18% delay, improved routing.</p>
+            <div style="margin-top:12px"><span class="pill">Case Study</span></div>
+          </div>
+
+          <div class="card" role="button" tabindex="0" onclick="openPortfolio(2)" onkeypress="if(event.key==='Enter')openPortfolio(2)">
+            <h4>InfraCare — Remote Site Support</h4>
+            <p class="muted">Tantangan: area tanpa koneksi stabil.</p>
+            <p class="mt"><strong>Hasil:</strong> 99.6% data persistence, offline sync.</p>
+            <div style="margin-top:12px"><span class="pill">Case Study</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section aria-label="Testimonials">
+        <div class="section-head">
+          <h3 style="margin:0">Testimoni</h3>
+          <div class="muted small">Suara klien fiktif</div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-direction:column">
+          <div class="card testimonial">
+            <div class="avatar">RP</div>
+            <div>
+              <strong>Rina Putri</strong>
+              <div class="muted">Operations Manager, LogiTrans</div>
+              <p class="muted">"FieldFlux membuat koordinasi kami jauh lebih mudah — waktu respon turun 40%."</p>
+            </div>
+          </div>
+
+          <div class="card testimonial">
+            <div class="avatar">BS</div>
+            <div>
+              <strong>Budi Santoso</strong>
+              <div class="muted">CTO, Maintena</div>
+              <p class="muted">"Integrasi API-nya mulus. Laporan otomatisnya menghemat jam kerja tim kami."</p>
+            </div>
+          </div>
+
+          <div class="card testimonial">
+            <div class="avatar">LH</div>
+            <div>
+              <strong>Lina Hartati</strong>
+              <div class="muted">Head of Field Ops, EnergiServ</div>
+              <p class="muted">"App-nya tetap berjalan walau sinyal buruk — game changer untuk lokasi lapangan."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog / News (mock) -->
+      <section id="blog" aria-labelledby="blogHeading">
+        <div class="section-head">
+          <h3 id="blogHeading" style="margin:0">Berita & Artikel</h3>
+          <div class="muted small">Mockup artikel perusahaan</div>
+        </div>
+
+        <article class="card" aria-labelledby="article1">
+          <h4 id="article1">How Offline-First Design Reduces Downtime for Field Teams</h4>
+          <div class="muted small">Published: 1 November 2025 — by FieldFlux Team</div>
+          <p class="muted mt">Dalam artikel ini kami menjelaskan bagaimana desain offline-first membantu tim lapangan tetap produktif di area dengan konektivitas rendah. ... (mock article untuk demonstrasi)</p>
+          <p style="margin-top:14px"><a href="#contact">Contact us about this</a></p>
+        </article>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" aria-labelledby="faqHeading">
+        <div class="section-head">
+          <h3 id="faqHeading" style="margin:0">FAQ</h3>
+          <div class="muted small">Pertanyaan umum</div>
+        </div>
+
+        <div class="faq" role="list">
+          <div class="q" tabindex="0" role="button" aria-expanded="false">Apakah FieldFlux tersedia offline?<span aria-hidden="true">+</span></div>
+          <div class="a">Ya — fitur offline-first menyimpan data lokal dan sinkron saat koneksi tersedia.</div>
+
+          <div class="q" tabindex="0" role="button" aria-expanded="false">Dapatkah FieldFlux terintegrasi dengan sistem ERP?<span aria-hidden="true">+</span></div>
+          <div class="a">Bisa — kami menyediakan REST API & webhook agar integrasi cepat dan aman.</div>
+
+          <div class="q" tabindex="0" role="button" aria-expanded="false">Bagaimana keamanan data?<span aria-hidden="true">+</span></div>
+          <div class="a">Keamanan menggunakan TLS, enkripsi saat disimpan, dan kontrol akses berbasis role.</div>
+
+          <div class="q" tabindex="0" role="button" aria-expanded="false">Apakah ada percobaan/demo?<span aria-hidden="true">+</span></div>
+          <div class="a">Ya — Request Demo tersedia via form kontak dan kami menyediakan sesi demo online.</div>
+
+          <div class="q" tabindex="0" role="button" aria-expanded="false">Apa dukungan untuk skala besar?<span aria-hidden="true">+</span></div>
+          <div class="a">Sistem dirancang multi-tenant dan dapat diskalakan untuk ribuan pengguna.</div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" aria-labelledby="contactHeading">
+        <div class="section-head">
+          <h3 id="contactHeading" style="margin:0">Hubungi Kami</h3>
+          <div class="muted small">Isi form atau kunjungi kantor (fiktif)</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 420px;gap:18px">
+          <!-- Form -->
+          <div class="card" aria-labelledby="formTitle">
+            <h4 id="formTitle">Kirim pesan / Request Demo</h4>
+            <form class="contact" id="contactForm" novalidate>
+              <div class="form-row">
+                <div>
+                  <label for="name">Nama</label>
+                  <input id="name" name="name" type="text" required aria-required="true" />
+                </div>
+                <div>
+                  <label for="company">Perusahaan</label>
+                  <input id="company" name="company" type="text" />
+                </div>
+              </div>
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required aria-required="true" />
+
+              <label for="subject">Subjek</label>
+              <input id="subject" name="subject" type="text" required />
+
+              <label for="preferred">Preferred contact date</label>
+              <input id="preferred" name="preferred" type="date" />
+
+              <label for="message">Pesan</label>
+              <textarea id="message" name="message" required minlength="20" aria-required="true"></textarea>
+
+              <!-- honeypot field to reduce spam -->
+              <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+                <label>Do not fill</label>
+                <input name="hp" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                <div id="formStatus" class="muted small" role="status" aria-live="polite"></div>
+              </div>
+              <div class="note mt">Kami tidak akan membagikan email Anda. Anda juga bisa mengirim ke <a href="mailto:sales@fieldflux.example">sales@fieldflux.example</a></div>
+            </form>
+          </div>
+
+          <!-- Map & Info -->
+          <aside class="card" aria-label="Office & Map">
+            <h4>FieldFlux HQ (Fiktif)</h4>
+            <p class="muted">Jl. Inovasi No.88, Kawasan Tekno Park, Jakarta Selatan, 12950, Indonesia</p>
+            <div style="height:12px"></div>
+            <!-- Google Maps iframe - using a generic embed with address query -->
+            <div style="border-radius:10px;overflow:hidden">
+              <iframe
+                title="FieldFlux HQ Map"
+                width="100%"
+                height="260"
+                style="border:0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Jl.+Inovasi+No.88+Kawasan+Tekno+Park+Jakarta+Selatan&output=embed"></iframe>
+            </div>
+
+            <div style="margin-top:12px" class="small muted">
+              Phone: +62-21-555-0100<br>
+              Email: <a href="mailto:sales@fieldflux.example">sales@fieldflux.example</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer aria-label="Footer">
+        <div class="footer-grid">
+          <div>
+            <strong>FieldFlux</strong>
+            <div class="small muted">Connect teams. Deliver results.</div>
+            <div style="margin-top:8px" class="small muted">© FieldFlux (fiktif) 2025</div>
+          </div>
+
+          <div>
+            <div class="small muted">Quick links</div>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <a class="small" href="#services">Layanan</a>
+              <a class="small" href="#portfolio">Portofolio</a>
+              <a class="small" href="#blog">Berita</a>
+              <a class="small" href="#contact">Kontak</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="small muted">Address</div>
+            <div class="small">FieldFlux HQ, Jl. Inovasi No.88, Kawasan Tekno Park, Jakarta Selatan</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Portfolio Modal -->
+  <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h3 id="modalTitle">Case Study</h3>
+          <div class="muted small" id="modalSubtitle">Project subtitle</div>
+        </div>
+        <div><button class="close" onclick="closeModal()" aria-label="Close modal">✕</button></div>
+      </div>
+      <div id="modalBody" style="margin-top:12px" class="muted">
+        <!-- content inserted by JS -->
+      </div>
+      <div style="margin-top:12px">
+        <button class="btn btn-primary" onclick="openContact('Discuss case study')">Talk to us</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== SMALL JS FOR INTERACTIONS =====
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    navToggle && navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = expanded ? 'none' : 'block';
+    });
+
+    // Hero / Request demo buttons open contact
+    const demoBtns = document.querySelectorAll('#heroDemo, #requestDemoBtn');
+    demoBtns.forEach(b => b.addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      document.getElementById('name').focus();
+    }));
+
+    // Portfolio modal content
+    const portfolioData = [
+      {
+        title: 'MaintenanceX — Maintenance Operations',
+        subtitle: 'Coordination for field technicians',
+        body: '<p><strong>Tantangan:</strong> koordinasi teknisi dan pelaporan manual.</p><p><strong>Solusi:</strong> FieldFlux diterapkan dengan task management, geofence, dan reporting otomatis.</p><p><strong>Hasil:</strong> +32% efisiensi, waktu respon turun signifikan.</p>'
+      },
+      {
+        title: 'LogiX — Delivery Optimization',
+        subtitle: 'Routing & scheduling',
+        body: '<p><strong>Tantangan:</strong> keterlambatan karena routing sub-optimal.</p><p><strong>Solusi:</strong> optimalisasi rute dan ETA real-time.</p><p><strong>Hasil:</strong> penurunan delay 18%.</p>'
+      },
+      {
+        title: 'InfraCare — Remote Site Support',
+        subtitle: 'Offline operations in remote areas',
+        body: '<p><strong>Tantangan:</strong> lokasi tanpa koneksi stabil.</p><p><strong>Solusi:</strong> offline-first sync dan retry logic.</p><p><strong>Hasil:</strong> 99.6% data persistence dan kepuasan klien naik.</p>'
+      }
+    ];
+
+    function openPortfolio(index){
+      const modal = document.getElementById('portfolioModal');
+      document.getElementById('modalTitle').innerText = portfolioData[index].title;
+      document.getElementById('modalSubtitle').innerText = portfolioData[index].subtitle;
+      document.getElementById('modalBody').innerHTML = portfolioData[index].body;
+      modal.classList.add('open');
+      // trap focus simple:
+      modal.querySelector('.close').focus();
+    }
+    function closeModal(){
+      document.getElementById('portfolioModal').classList.remove('open');
+    }
+    document.getElementById('portfolioModal').addEventListener('click', e => {
+      if(e.target === e.currentTarget) closeModal();
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq .q').forEach(q=>{
+      q.addEventListener('click', ()=> toggleFAQ(q));
+      q.addEventListener('keypress', (e)=>{ if(e.key === 'Enter') toggleFAQ(q) });
+    });
+    function toggleFAQ(q){
+      const open = q.classList.contains('open');
+      q.classList.toggle('open', !open);
+      q.setAttribute('aria-expanded', String(!open));
+      // update visual +/- (simple)
+      q.querySelector('span') && (q.querySelector('span').textContent = open ? '+' : '-');
+    }
+
+    // Contact form validation & simulated submit
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = '';
+      // basic client-side validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.subject.value.trim();
+      const message = form.message.value.trim();
+      const hp = form.querySelector('input[name="hp"]').value;
+      if(hp){ statusEl.textContent = 'Spam detected.'; return; } // honeypot
+
+      if(!name || !email || !subject || message.length < 20){
+        statusEl.textContent = 'Mohon lengkapi semua field (pesan minimal 20 karakter).';
+        return;
+      }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        statusEl.textContent = 'Format email tidak valid.';
+        return;
+      }
+
+      // disable UI
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      const orig = btn.innerHTML;
+      btn.innerHTML = 'Mengirim...';
+
+      // simulate network request (since no backend provided)
+      await new Promise(r=>setTimeout(r, 900));
+
+      // mock success: store to localStorage for demo
+      const submissions = JSON.parse(localStorage.getItem('ff_submissions') || '[]');
+      submissions.push({name, email, company:form.company.value, subject, message, preferred: form.preferred.value, at: new Date().toISOString()});
+      localStorage.setItem('ff_submissions', JSON.stringify(submissions));
+
+      statusEl.textContent = 'Pesan terkirim! Tim sales akan menghubungi Anda.';
+      btn.innerHTML = 'Terkirim';
+      setTimeout(()=>{ btn.disabled=false; btn.innerHTML = orig; form.reset(); }, 1200);
+    });
+
+    // helper to open contact with prefilled subject
+    function openContact(subject){
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      if(subject) document.getElementById('subject').value = subject;
+      document.getElementById('name').focus();
+    }
+
+    // small accessibility: close modal with ESC
+    document.addEventListener('keydown', e=>{
+      if(e.key === 'Escape') {
+        closeModal();
+        // hide mobile nav on esc
+        if(navToggle && mobileNav.style.display === 'block'){ navToggle.click(); }
+      }
+    });
+
+    // Simple reduction of motion for users who prefer reduced motion
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.documentElement.style.scrollBehavior = 'auto';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DynaGrow Digital - Mendefinisikan Ulang Pertumbuhan Digital Anda</title>
+    <style>
+        /*
+        ========================================================
+        III. SPESIFIKASI STYLING & RESPONSIVITAS (CSS)
+        ========================================================
+        */
+        :root {
+            /* Skema Warna DynaGrow Digital */
+            --color-primary: #0A1931; /* Biru Tua */
+            --color-accent: #FF7E40;  /* Oranye Terang */
+            --color-light: #FFFFFF;
+            --color-grey: #F5F5F5;
+        }
+
+        /* Styling Dasar (Reset & Font) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-primary);
+            background-color: var(--color-light);
+        }
+
+        h1, h2, h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: var(--color-accent);
+            color: var(--color-light) !important;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e66a30; /* Sedikit lebih gelap */
+        }
+
+        /* ---------------------------------------------------- */
+        /* HEADER / NAVIGATION */
+        /* ---------------------------------------------------- */
+
+        header {
+            background: var(--color-light);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-grey);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* HERO SECTION */
+        /* ---------------------------------------------------- */
+
+        #home {
+            background: var(--color-primary);
+            color: var(--color-light);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        #home h1 {
+            font-size: 3em;
+            color: var(--color-light);
+            margin-bottom: 15px;
+        }
+
+        #home p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* FEATURE SECTIONS (3 Poin Unggulan) */
+        /* ---------------------------------------------------- */
+
+        #features {
+            padding: 50px 0;
+            background: var(--color-light);
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid var(--color-grey);
+            border-radius: 8px;
+        }
+
+        .feature-item h3 {
+            color: var(--color-accent);
+        }
+
+        /* ---------------------------------------------------- */
+        /* CONTACT SECTION */
+        /* ---------------------------------------------------- */
+
+        #contact {
+            padding: 80px 0;
+            background: var(--color-grey);
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-form-area, .contact-info-area {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .map-embed {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* FOOTER */
+        /* ---------------------------------------------------- */
+
+        footer {
+            background: var(--color-primary);
+            color: var(--color-light);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        
+        /* ---------------------------------------------------- */
+        /* MEDIA QUERIES (Responsif Dasar) */
+        /* ---------------------------------------------------- */
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                margin-top: 15px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links li {
+                margin: 5px 0;
+            }
+
+            #home h1 {
+                font-size: 2em;
+            }
+
+            .feature-grid, .contact-grid {
+                flex-direction: column;
+            }
+            
+            .contact-form-area, .contact-info-area {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">DynaGrow Digital</div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#contact" class="btn">Mulai Konsultasi</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <h1>Strategi Digital Marketing Terukur, Hasil Nyata.</h1>
+            <p>Mendefinisikan Ulang Pertumbuhan Digital Anda.</p>
+            <a href="#contact" class="btn">Dapatkan Proposal Gratis</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <h2>Mengapa Memilih Kami?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>✅ Fokus ROI</h3>
+                    <p>Strategi yang mengedepankan keuntungan nyata dan terukur.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📈 Data-Driven</h3>
+                    <p>Setiap keputusan kampanye didasarkan pada analitik mendalam.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🏆 Tim Bersertifikasi</h3>
+                    <p>Ahli yang kompeten dan selalu mengikuti tren digital terbaru.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div class="contact-form-area">
+                    <h3>Kirim Permintaan Konsultasi</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="perusahaan">Nama Perusahaan</label>
+                            <input type="text" id="perusahaan" name="perusahaan">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pesan">Pesan/Kebutuhan Proyek</label>
+                            <textarea id="pesan" name="pesan" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Permintaan Konsultasi</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-area">
+                    <h3>Kantor Kami</h3>
+                    <p><strong>Alamat Fiktif:</strong> Jl. Digital Strategi No. 55, Sudirman, Jakarta Selatan, 12190</p>
+                    <p><strong>Email:</strong> hello@dynagrowdigital.com</p>
+                    <p><strong>Telepon:</strong> (021) 500-DGD</p>
+                    
+                    <h4 style="margin-top: 20px;">Peta Lokasi</h4>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1200.7512803816766!2d106.8090!3d-6.2297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4e13!3m3!1m2!1s0x2e69f16807f6e07d%3A0x6700c2a7f5a7a8d!2sGelora%20Bung%20Karno!5e0!3m2!1sid!2sid!4v1633512345678" 
+                        class="map-embed" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DynaGrow Digital. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    </body>
+</html>
